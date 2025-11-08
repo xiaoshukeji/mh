@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="description"
+      content="ObscuraX 静态漫画网站，收录精选本子与阅读体验。"
+    />
+    <title>ObscuraX 漫画馆</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body data-theme="dark">
+    <div class="background-orbit"></div>
+    <header class="site-header">
+      <div class="logo-area">
+        <span class="logo-mark">◎</span>
+        <div class="logo-text">
+          <h1>ObscuraX 漫画馆</h1>
+          <p>沉浸式静态阅读 · 多主题切换 · 平滑动画体验</p>
+        </div>
+      </div>
+      <nav class="site-nav" aria-label="主导航">
+        <a class="nav-link" href="#mediaSection">媒体</a>
+      </nav>
+      <div class="header-controls">
+        <label class="theme-switcher">
+          <span>主题</span>
+          <select id="themeSelect" aria-label="主题切换">
+            <option value="dark">夜色</option>
+            <option value="light">晨光</option>
+            <option value="neon">霓虹</option>
+          </select>
+        </label>
+      </div>
+    </header>
+
+    <main>
+      <section class="hero">
+        <div class="hero-text">
+          <h2>打造属于你的静态漫画空间</h2>
+          <p>
+            所有资源均来自本地 <code>Resources</code> 目录，无需后端服务，开箱即用。
+            支持主题切换、流畅过渡动画与阅读器沉浸模式。
+          </p>
+          <div class="hero-actions">
+            <button id="exploreBtn" class="primary-btn">立即浏览</button>
+            <button id="randomBtn" class="ghost-btn">随便看看</button>
+          </div>
+        </div>
+        <div class="hero-visual">
+          <div class="hero-card">
+            <span class="hero-badge">静态部署</span>
+            <h3>一键加载本地漫画</h3>
+            <p>自动生成卡片、分页预览与快捷键操作。</p>
+            <ul>
+              <li>平滑滚动 &amp; 视差动画</li>
+              <li>深浅色与霓虹主题</li>
+              <li>无后端依赖，纯静态</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section class="filter-bar" aria-label="漫画筛选">
+        <label class="search-box">
+          <span class="material-icon">🔍</span>
+          <input
+            id="searchInput"
+            type="search"
+            placeholder="搜索标题或标签..."
+            autocomplete="off"
+          />
+        </label>
+        <div class="tag-filters" id="tagFilters"></div>
+        <span class="filter-count" id="resultCount"></span>
+      </section>
+
+      <section class="comic-grid" id="comicGrid" aria-live="polite"></section>
+
+      <section
+        id="mediaSection"
+        class="media-section"
+        aria-labelledby="mediaSectionTitle"
+      >
+        <div class="section-heading">
+          <h2 id="mediaSectionTitle">媒体精选</h2>
+          <p>除漫画外，还可浏览本地图集与短视频素材，点击即可沉浸式体验。</p>
+        </div>
+        <div class="media-panels">
+          <article class="media-panel" aria-labelledby="mediaGalleryHeading">
+            <header class="media-panel__header">
+              <h3 id="mediaGalleryHeading">图集</h3>
+              <span>静态预览</span>
+            </header>
+            <div class="media-grid" id="mediaGalleryGrid" aria-live="polite"></div>
+          </article>
+          <article class="media-panel" aria-labelledby="mediaVideoHeading">
+            <header class="media-panel__header">
+              <h3 id="mediaVideoHeading">视频</h3>
+              <span>本地播放</span>
+            </header>
+            <div class="media-grid media-grid--video" id="mediaVideoGrid" aria-live="polite"></div>
+          </article>
+        </div>
+      </section>
+    </main>
+
+    <section id="readerView" class="reader-view" hidden aria-hidden="true">
+      <header class="reader-header">
+        <button type="button" id="closeReaderBtn" class="reader-close" aria-label="退出阅读">返回馆藏</button>
+        <div class="reader-info">
+          <h2 id="readerTitle"></h2>
+          <p id="readerMeta"></p>
+        </div>
+      </header>
+      <div class="reader-pages" id="readerPages" aria-live="polite"></div>
+    </section>
+
+    <footer class="site-footer">
+      <p>资源目录：<code>Resources/comic</code> · 媒体素材：<code>Resources/media</code></p>
+      <p>滚轮向下连续阅读 · <kbd>Esc</kbd> 快速返回馆藏</p>
+    </footer>
+
+    <template id="tagChipTpl">
+      <button type="button" class="tag-chip" data-tag=""></button>
+    </template>
+
+    <script src="script.js" defer></script>
+  </body>
+</html>
+
